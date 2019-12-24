@@ -1,0 +1,53 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "cats",
+    "version" : "0.0.1"
+  },
+  "schemes" : [ "http" ],
+  "basePath" : "/cats",
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/cat" : {
+      "post" : {
+        "tags" : [ "cat" ],
+        "summary" : "Create a new instance of the model and persist it into the data source.",
+        "operationId" : "cat.create",
+        "parameters" : [ {
+          "name" : "data",
+          "in" : "body",
+          "description" : "Model instance data",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/cat"
+          }
+        } ],
+        "responses" : {
+          "201" : {
+            "description" : "Request was successful",
+            "schema" : {
+              "$ref" : "#/definitions/cat"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "cat" : {
+      "description" : "",
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "owner_name" : {
+          "type" : "string"
+        }
+      },
+      "additionalProperties" : false
+    }
+  },
+  "host" : "ace-cat-server-http-ucu.alley-cluster-2-97f2cdaea86b0f55496562172dc793b6-0001.us-east.containers.appdomain.cloud"
+}

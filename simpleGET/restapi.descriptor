@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.restapi" xmlns:ns2="http://com.ibm.etools.mft.descriptor.base" definitionType="swagger_20" definitionFile="swagger.json" implementation="gen/simpleGET.msgflow" https="false">
+    <operations/>
+    <errorHandlers/>
+</restapiDescriptor>

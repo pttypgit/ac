@@ -1,0 +1,53 @@
+#!/bin/bash -e
+#
+# S2I assemble script for the 'acebuilder' image.
+# The 'assemble' script builds your application source so that it is ready to run.
+#
+# For more information refer to the documentation:
+#	https://github.com/openshift/source-to-image/blob/master/docs/builder_image.md
+#
+#oc new-app --name myaceapp aces2i~https://github.repo
+# --build-env MAIN=folderintherepo
+# --build-env LICENSE=accept
+
+# If the 'acebuilder' assemble script is executed with the '-h' flag, print the usage.
+if [[ "$1" == "-h" ]]; then
+	exec /usr/libexec/s2i/usage
+fi
+
+
+
+if [ -z "${MAIN}" ]
+then
+ if [ $( ls /tmp/src/|wc -l ) -ne 1 ]
+ then
+  echo "more than one directory found in repo, specify the service directory with the environment variable MAIN"
+  exit -1
+ fi
+ MAIN=$( ls /tmp/src/ )
+fi
+
+
+echo "---> Installing application source..."
+#cp -Rf /tmp/src/. ./
+BARDEST=${PWD}/bars
+mkdir ${BARDEST}
+cd /tmp/src
+
+ls /tmp/src
+
+# TODO: Add build steps for your application, eg npm install, bundle install, pip install, etc.
+
+echo "---> Building application from source..."
+# exit on any non zero return code, meaning error
+OUTPUT=$( mqsipackagebar -w /tmp/src -a ${MAIN}.bar -k ${MAIN} )
+echo "${OUTPUT}"
+#Get response codes, all begin with 'BIP'
+RESPCODES=$( echo "${OUTPUT}" | grep '^BIP' )
+if [[ "${RESPCODES}" != BIP1845I:* ]]
+then
+ echo "unexpected response from mqsipackagebar"
+ exit -1
+fi
+
+cp /tmp/src/*.bar ${BARDEST}

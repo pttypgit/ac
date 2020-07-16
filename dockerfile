@@ -3,7 +3,7 @@
 FROM ibmcom/ace
 
 # TODO: Put the maintainer name in the image metadata
-# LABEL maintainer="Ulas Cubuk <ucubuk3@uk.ibm.com>"
+# LABEL maintainer="author@me.com"
 
 # TODO: Rename the builder environment variable to inform users about application you provide them
 # ENV BUILDER_VERSION 1.0
@@ -31,7 +31,7 @@ COPY ./s2i/bin/ /usr/libexec/s2i
 # RUN chown -R 1001:1001 /opt/app-root
 # This default user is created in the openshift/base-centos7 image
 # USER 1001
-USER aceuser
+
 
 # TODO: Set the default port for applications built using this image
 # EXPOSE 8080

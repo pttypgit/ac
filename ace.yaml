@@ -14,7 +14,7 @@ spec:
     containers:
       runtime:
         image: >-
-          image-registry.openshift-image-registry.svc:5000/cp4i/ace-app:latest
+          image-registry.openshift-image-registry.svc:5000/cp4i/ace-app:sim-amd64
   replicas: 1
   router:
     timeout: 120s

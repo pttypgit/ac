@@ -14,7 +14,7 @@ spec:
     containers:
       runtime:
         image: >-
-          image-registry.openshift-image-registry.svc:5000/cp4i/ace-app:storm-amd64
+          image-registry.openshift-image-registry.svc:5000/cp4i/ace-storm:latest
   replicas: 1
   router:
     timeout: 120s
